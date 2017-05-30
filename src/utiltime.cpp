@@ -20,6 +20,7 @@ int64_t GetTime()
 {
     if (nMockTime) return nMockTime;
 
+    // グリニッジ標準時のUNIX時間
     time_t now = time(NULL);
     assert(now > 0);
     return now;

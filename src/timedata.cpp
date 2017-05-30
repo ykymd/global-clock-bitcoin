@@ -35,6 +35,8 @@ int64_t GetTimeOffset()
 
 int64_t GetAdjustedTime()
 {
+    // GetTime: グリニッジ標準時のUNIX時間 (time(NULL))
+    // GetTimeOffset: 
     return GetTime() + GetTimeOffset();
 }
 
