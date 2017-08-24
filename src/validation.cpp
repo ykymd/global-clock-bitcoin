@@ -57,6 +57,7 @@
 CCriticalSection cs_main;
 
 BlockMap mapBlockIndex;
+// 現在のアクティブなブランチ
 CChain chainActive;
 CBlockIndex *pindexBestHeader = NULL;
 CWaitableCriticalSection csBestBlock;
@@ -2299,6 +2300,7 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
  * Return the tip of the chain with the most work in it, that isn't
  * known to be invalid (it's however far from certain to be valid).
  */
+ // 最も難易度の高い（確率の低い）PoWを成功させたブランチを探す（メインブランチを選ぶ）
 static CBlockIndex* FindMostWorkChain() {
     do {
         CBlockIndex *pindexNew = NULL;
@@ -2469,6 +2471,7 @@ static void NotifyHeaderTip() {
  * or an activated best chain. pblock is either NULL or a pointer to a block
  * that is already loaded (to avoid loading it again from disk).
  */
+// メインチェーンを代入する処理
 bool ActivateBestChain(CValidationState &state, const CChainParams& chainparams, std::shared_ptr<const CBlock> pblock) {
     // Note that while we're often called here from ProcessNewBlock, this is
     // far from a guarantee. Things in the P2P/RPC will often end up calling
