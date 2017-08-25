@@ -178,6 +178,7 @@ public:
     unsigned int nUndoPos;
 
     //! (memory only) Total amount of work (expected number of hashes) in the chain up to and including this block
+    // ワーク（マイニングで生成された値）の合計値
     arith_uint256 nChainWork;
 
     //! Number of transactions in this block.
