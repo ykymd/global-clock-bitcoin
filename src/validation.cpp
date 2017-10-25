@@ -2329,7 +2329,9 @@ static CBlockIndex* FindMostWorkChain() {
             if (fFailedChain || fMissingData) {
                 // Candidate chain is not usable (either invalid or missing data)
                 // ここでワーク合計値の比較
-                if (fFailedChain && (pindexBestInvalid == NULL || pindexNew->nChainWork > pindexBestInvalid->nChainWork))
+                //if (fFailedChain && (pindexBestInvalid == NULL || pindexNew->nChainWork > pindexBestInvalid->nChainWork))
+                // 先に生成された方を優先する
+                if (fFailedChain && (pindexBestInvalid == NULL || pindexNew->nTime < pindexBestInvalid->nTime))
                     pindexBestInvalid = pindexNew;
                 CBlockIndex *pindexFailed = pindexNew;
                 // Remove the entire chain from the set.
